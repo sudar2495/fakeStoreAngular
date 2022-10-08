@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<!-- <div class="content">
+    <div>
+        <div *ngFor="let data of dataList">
+            <mat-card>
+                <mat-card-title>{{data.title}}</mat-card-title>
+                <mat-card-subtitle>{{data.category}}</mat-card-subtitle>
+                <mat-card-content>{{ data.description }}</mat-card-content>
+                <mat-card-actions>Button</mat-card-actions>
+                <mat-card-footer>dfvdev</mat-card-footer>
+                <img mat-card-image src="{{ data.image}}" alt="alt">
+            </mat-card>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
+
+
+<form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+
+    <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input type="text" matInput formControlName="firstName">
+        <mat-error
+            *ngIf="profileForm.controls.firstName.touched && profileForm.controls.firstName.invalid && profileForm.controls.firstName.dirty && profileForm.controls.firstName.getError('required')">
+            This field is Required
+        </mat-error>
+        <mat-error
+            *ngIf="profileForm.controls.firstName.touched && profileForm.controls.firstName.invalid && profileForm.controls.firstName.dirty && profileForm.controls.firstName.getError('minlength')">
+            MinLength not true </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>lastName</mat-label>
+        <input type="text" matInput formControlName="lastName">
+        <mat-error
+            *ngIf="profileForm.controls.lastName.touched && profileForm.controls.lastName.invalid && profileForm.controls.lastName.dirty && profileForm.controls.lastName.getError('required')">
+            This field is Required
+        </mat-error>
+        <mat-error
+            *ngIf="profileForm.controls.lastName.touched && profileForm.controls.lastName.invalid && profileForm.controls.lastName.dirty && profileForm.controls.lastName.getError('minlength')">
+            MinLength not true </mat-error>
+    </mat-form-field>
+
+    <div formArrayName="hobby" *ngFor="let hobby of hobbies.controls; let i = index;">
+        <p>
+            <mat-checkbox [formControlName]="i">{{ hobbiesList[i].name }}</mat-checkbox>
+        </p>
+        <!-- <mat-checkbox 
+            [formControlName]=" i">{{ hobby }}{{ i }} {{ hobbiesList | json }}</mat-checkbox> -->
+    </div>
+
+
+
+
+
+
+    <button type="submit">Submit</button>
+</form>
